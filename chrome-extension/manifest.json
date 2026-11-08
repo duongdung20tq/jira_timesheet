@@ -1,0 +1,20 @@
+{
+  "manifest_version": 3,
+  "name": "FIS Jira Timesheet",
+  "version": "1.0.0",
+  "description": "Khai timesheet Jira FIS hàng loạt từ file Excel",
+  "host_permissions": ["https://jira.fis.com.vn/*"],
+  "background": { "service_worker": "background.js" },
+  "action": { "default_title": "Khai timesheet từ Excel", "default_icon": { "16": "icons/16.png", "32": "icons/32.png", "48": "icons/48.png", "128": "icons/128.png" } },
+  "icons": { "16": "icons/16.png", "32": "icons/32.png", "48": "icons/48.png", "128": "icons/128.png" },
+  "content_scripts": [
+    {
+      "matches": ["https://jira.fis.com.vn/*"],
+      "js": ["lib/xlsx.mini.min.js", "core.js", "ui.js"],
+      "run_at": "document_idle"
+    }
+  ],
+  "web_accessible_resources": [
+    { "resources": ["template.xlsx"], "matches": ["https://jira.fis.com.vn/*"] }
+  ]
+}
